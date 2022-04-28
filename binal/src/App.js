@@ -40,10 +40,18 @@ function App() {
   // let arr =[10,20,30,40,50];
   // arr.map((a ,i) => console.log(a));
 
-  let intro = () =>{
-    console.log("binal bodar")
-  }
-  intro();
+  // let intro = () =>{
+  //   console.log("binal bodar")
+  // }
+  // intro();
+
+  // const numbers = [1, 2, 3, 4, 5];
+  // const doubled = numbers.map((number) => number * 2);
+  // console.log(doubled);
+
+  let arr = [10,"Binal",20,30,40,50];
+  console.log(arr[4]);
+
   return (
     <div className="App">
       <header className="App-header">
