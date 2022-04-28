@@ -45,12 +45,72 @@ function App() {
   // }
   // intro();
 
+  //map
   // const numbers = [1, 2, 3, 4, 5];
   // const doubled = numbers.map((number) => number * 2);
   // console.log(doubled);
 
-  let arr = [10,"Binal",20,30,40,50];
-  console.log(arr[4]);
+  //array
+  // let arr = [10,"Binal",20,30,40,50];
+  // console.log(arr[4]);
+
+  //object
+  // let obj={
+  //   id:10,
+  //   age:20,
+  //   per:30
+  // }
+  // console.log(obj.age);
+
+  //push
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.push(99);
+  // console.log(arr);
+
+  //unshift
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.unshift(99);
+  // console.log(arr);
+
+
+  //pop
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.pop();
+  // console.log(arr);
+
+  //shift
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.shift();
+  // console.log(arr);
+
+  //splice
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.splice(3,0,99);//add element at specific position
+  // console.log(arr);
+
+  //splice
+  // let arr=[10,"Binal",20,30,40,50];
+  // arr.splice(2,1);//remove 1 element frome 2nd index
+  // console.log(arr);
+
+  //toString
+  // let arr=[10,"Binal",20,30,40,50];
+  // console.log(arr.toString());
+  
+  //some
+  // let arr=[10,"Binal",20,30,40,50];
+  // let res=arr.some((a)=>a>100);//10
+  // console.log(res);
+
+  //find
+  // let arr=[10,"Binal",20,30,40,50];
+  // let res=arr.find((a)=>a>10);
+  // console.log(res);
+
+  //isArray
+  // let arr=[10,"Binal",20,30,40,50];
+  // let res=Array.isArray(arr);
+  // console.log(res);
 
   return (
     <div className="App">
