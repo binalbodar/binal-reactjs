@@ -112,6 +112,35 @@ function App() {
   // let res=Array.isArray(arr);
   // console.log(res);
 
+  //map
+  let array = [
+  {id:101, name:'abacavir', quantity:25, price: 150, expiry: 2022, status: true},
+  {id:102, name:'Eltrombopag', quantity:90, price:550, expiry:2021, status:true},
+  {id: 103, name: 'Meloxicam', quantity: 85, price: 450, expiry: 2025, status: false},
+  {id: 104, name: 'Allopurinol', quantity: 50, price: 600, expiry: 2023, status: true},
+  {id: 105, name: 'Phenytoin', quantity: 63, price: 250, expiry: 2021, status: false},
+];
+  let map = array.map(x => console.log(x.id, x.name, x.quantity, x.price, x.expiry, x.status));
+
+  //filter
+  function xdate(expiry){
+    return expiry > 2022;
+  }
+  function func(){
+    var filtered=[2022,2021,2025,2023,2021].filter(xdate);
+    console.log(filtered);
+  }
+  func();
+
+  //reduse
+  let array1=[150,550,450,600,250];
+  let ini=0;
+  let sum=array1.reduce(
+    (pre,cur)=>pre+cur,
+    ini
+  );
+  console.log(sum);
+
   return (
     <div className="App">
       <header className="App-header">
