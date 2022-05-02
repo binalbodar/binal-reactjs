@@ -96,7 +96,7 @@ function App() {
   //toString
   // let arr=[10,"Binal",20,30,40,50];
   // console.log(arr.toString());
-  
+
   //some
   // let arr=[10,"Binal",20,30,40,50];
   // let res=arr.some((a)=>a>100);//10
@@ -112,52 +112,121 @@ function App() {
   // let res=Array.isArray(arr);
   // console.log(res);
 
+  //   //map
+  //   let array = [
+  //   {id:101, name:'abacavir', quantity:25, price: 150, expiry: 2022, status: true},
+  //   {id:102, name:'Eltrombopag', quantity:90, price:550, expiry:2021, status:true},
+  //   {id: 103, name: 'Meloxicam', quantity: 85, price: 450, expiry: 2025, status: false},
+  //   {id: 104, name: 'Allopurinol', quantity: 50, price: 600, expiry: 2023, status: true},
+  //   {id: 105, name: 'Phenytoin', quantity: 63, price: 250, expiry: 2021, status: false},
+  // ];
+  //   let map = array.map(x => console.log(x.id, x.name, x.quantity, x.price, x.expiry, x.status));
+
+  //   //filter
+  //   function xdate(expiry){
+  //     return expiry > 2022;
+  //   }
+  //   function func(){
+  //     var filtered=[2022,2021,2025,2023,2021].filter(xdate);
+  //     console.log(filtered);
+  //   }
+  //   func();
+
+  //   //reduse
+  //   let array1=[150,550,450,600,250];
+  //   let ini=0;
+  //   let sum=array1.reduce(
+  //     (pre,cur)=>pre+cur,
+  //     ini
+  //   );
+  //   console.log(sum);
+
+  const data = [
+    {
+      id: 101,
+      name: 'Abacavir',
+      quantity: 25,
+      price: 150,
+      expiry: 2022,
+      status: true
+    },
+    {
+      id: 102,
+      name: 'Eltrombopag',
+      quantity: 90,
+      price: 550,
+      expiry: 2021,
+      status: true
+    },
+    {
+      id: 103,
+      name: 'Meloxicam',
+      quantity: 85,
+      price: 450,
+      expiry: 2025,
+      status: false
+    },
+    {
+      id: 104,
+      name: 'Allopurinol',
+      quantity: 50,
+      price: 600,
+      expiry: 2023,
+      status: true
+    },
+    {
+      id: 105,
+      name: 'Phenytoin',
+      quantity: 63,
+      price: 250,
+      expiry: 2021,
+      status: false
+    }
+  ];
+
   //map
-  let array = [
-  {id:101, name:'abacavir', quantity:25, price: 150, expiry: 2022, status: true},
-  {id:102, name:'Eltrombopag', quantity:90, price:550, expiry:2021, status:true},
-  {id: 103, name: 'Meloxicam', quantity: 85, price: 450, expiry: 2025, status: false},
-  {id: 104, name: 'Allopurinol', quantity: 50, price: 600, expiry: 2023, status: true},
-  {id: 105, name: 'Phenytoin', quantity: 63, price: 250, expiry: 2021, status: false},
-];
-  let map = array.map(x => console.log(x.id, x.name, x.quantity, x.price, x.expiry, x.status));
+  data.map((value, index) => console.log(value.id, value.name));
 
   //filter
-  function xdate(expiry){
-    return expiry > 2022;
-  }
-  function func(){
-    var filtered=[2022,2021,2025,2023,2021].filter(xdate);
-    console.log(filtered);
-  }
-  func();
+  let filterData = data.filter((d, i) => d.expiry >=2022);
+  console.log(filterData);
 
-  //reduse
-  let array1=[150,550,450,600,250];
-  let ini=0;
-  let sum=array1.reduce(
-    (pre,cur)=>pre+cur,
-    ini
-  );
-  console.log(sum);
+  //reduce
+  let ans = filterData.reduce((acc, d, i)=>acc+d.price, 0);
+  console.log(ans);
+
+  //filter&reduce
+  let abc=data
+  .filter((d, i)=>d.expiry>=2022)
+  .reduce((acc,d,i)=>acc+d.price,0);
+  console.log(abc);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <table>
+        <th>
+          <td>id</td>
+          <td>name</td>
+          {/* <td>quantity</td>
+          <td>price</td>
+          <td>expiry</td> */}
+        </th>
+        {
+          data.map((value, index) => {
+            return(
+              <tr>
+              <td>{value.id}</td>
+              <td>{value.name}</td>
+              <td>{abc}</td>
+              {/* <td>{value.quantity}</td>
+              <td>{value.price}</td>
+              <td>{value.expiry}</td> */}
+            </tr>
+            )
+          })
+        }
+      </table>
+    </>
   );
 }
 
