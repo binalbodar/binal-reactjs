@@ -185,47 +185,91 @@ function App() {
   ];
 
   //map
-  data.map((value, index) => console.log(value.id, value.name));
+  //data.map((value, index) => console.log(value.id, value.name));
 
   //filter
-  let filterData = data.filter((d, i) => d.expiry >=2022);
-  console.log(filterData);
+  //let filterData = data.filter((d, i) => d.expiry >=2022);
+  //console.log(filterData);
 
   //reduce
-  let ans = filterData.reduce((acc, d, i)=>acc+d.price, 0);
-  console.log(ans);
+  //let ans = filterData.reduce((acc, d, i)=>acc+d.price, 0);
+  //console.log(ans);
 
   //filter&reduce
-  let abc=data
-  .filter((d, i)=>d.expiry>=2022)
-  .reduce((acc,d,i)=>acc+d.price,0);
-  console.log(abc);
+  //let abc=data
+  //.filter((d, i)=>d.expiry>=2022)
+  //.reduce((acc,d,i)=>acc+d.price,0);
+  //console.log(abc);
+
+  //[array satart]
+
+  //let arr=[10,20,30,40,50];
+
+  //copy
+  //let arr1=[...arr];
+  //console.log(arr1);
+
+  //merge
+  //let arr2=[99,...arr,100];
+  //console.log(arr2);
+
+  //destructure
+  //let[maths,eng,guj,ss,sci]=arr;
+  //console.log(sci);
+
+  //[array end]
+
+  //[object start]
+
+  let obj ={
+    id:101,
+    name:"amit"
+  };
+
+  //copy
+  let obj1={...obj};
+  console.log(obj1);
+
+  //merge
+  let obj2={
+    ...obj,
+    place:"surat",
+    name:"mansi"
+  };
+  console.log(obj2);
+
+  //destructure
+  let {id,name}=obj;
+  console.log(id,name);
+
+  //[object end]
 
   return (
     <>
-      <table>
-        <th>
-          <td>id</td>
-          <td>name</td>
-          {/* <td>quantity</td>
-          <td>price</td>
-          <td>expiry</td> */}
-        </th>
+      {/* <table border="1">
+        <tr>
+          <td>Id</td>
+          <td>Name</td>
+          <td>Quantity</td>
+          <td>Price</td>
+          <td>Expiry</td>
+          <td>Total</td>
+        </tr>
         {
           data.map((value, index) => {
             return(
               <tr>
               <td>{value.id}</td>
               <td>{value.name}</td>
-              <td>{abc}</td>
-              {/* <td>{value.quantity}</td>
+              <td>{value.quantity}</td>
               <td>{value.price}</td>
-              <td>{value.expiry}</td> */}
+              <td>{value.expiry}</td>
+              {index === 0 ?<td rowspan={data.length}>{abc}</td> :null}
             </tr>
             )
           })
         }
-      </table>
+      </table> */}
     </>
   );
 }
