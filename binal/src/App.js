@@ -53,11 +53,17 @@ function App() {
   //console.log(ans);
 
   //filter&reduce
-  let abc=data
-  .filter((d, i)=>d.salary>=35000)
-  .reduce((acc,d,i)=>acc+d.bonus,0);
-  console.log(abc);
+//   let abc=data
+//   .filter((d, i)=>d.salary>=35000)
+//   .reduce((acc,d,i)=>acc+d.bonus,0);
+//   console.log(abc);
 
+  //filter&reduce
+  let xyz=data
+  .filter((d, i)=>d.salary+d.bonus)
+  .reduce((acc,d,i)=>acc+d.salary+d.bonus,0);
+  console.log(xyz);
+  
   return (
     <>
       <table border="1">
@@ -78,7 +84,7 @@ function App() {
               <td>{value.salary}</td>
               <td>{value.bonus}</td>
               <td>{value.salary+value.bonus}</td>
-              {index === 0 ?<td rowspan={data.length}>{abc}</td> :null}
+              {index === 0 ?<td rowspan={data.length}>{xyz}</td> :null}
             </tr>
             )
           })
