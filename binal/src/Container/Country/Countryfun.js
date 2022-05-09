@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import Cityfun from './Cityfun';
 
-function Countryfun(props) {
+function Countryfun({gdpval}) {
     const[Country, setCountry]=useState('India')
 
     const[gdp, setGdp]=useState(0)
@@ -9,12 +10,15 @@ function Countryfun(props) {
         setCountry('UK')
     }
     return (
+        <>
         <div>
             <p>Country[Funtion based component] : {Country}</p>
             <button onClick={()=>ChangeCountry()}>Change</button>
             <p>GDP:{gdp}</p>
-            <button onClick={()=>setGdp(5.5)}>Change</button>
-        </div>
+            <button onClick={()=>setGdp(gdpval)}>Change</button>
+        </div> 
+        <Cityfun fampla={Country}/>
+        </>
     );
 }
 
