@@ -15,8 +15,8 @@ function Cityfun({fampla}) {
             <p>GDP:{gdp}</p>
             <button onClick={()=>setGdp(10)}>Change</button> */}
             {
-            fampla === 'India'?<p>Famous City:Taj Mahel</p>:<p>Famous City:London Brije</p>
-            }
+                fampla === 'India'?<p>Famous City:Taj Mahel</p>:<p>Famous City:London Brije</p>
+            }       
         </div>
     );
 }
