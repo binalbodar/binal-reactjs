@@ -6,6 +6,7 @@ import Countryfun from './Container/Country/Countryfun';
 import Cityfun from './Container/Country/Cityfun';
 import Branch from './Container/Country/Branch';
 import Time from './Container/Country/Time/Time';
+import TimeFun from './Container/Country/Time/TimeFun';
 
 function App() {
   
@@ -16,7 +17,8 @@ function App() {
     {/* <Countryfun gdpval={9.5}/> */}
     {/* <Cityfun/> */}
     {/* <Branch/>  */}
-    <Time/>
+    {/* <Time/> */}
+    <TimeFun/>
     </>
   );
 }
