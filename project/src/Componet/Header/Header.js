@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router-dom';
 
 function Header(props) {
     return (
@@ -15,18 +16,22 @@ function Header(props) {
                                 <div className="collapse navbar-collapse main-menu-item" id="navbarSupportedContent">
                                     <ul className="navbar-nav">
                                         <li className="nav-item">
-                                            <a className="nav-link" href="index.html">Home</a>
+                                            {/* <a className="nav-link" href="index.html">Home</a> */}
+                                            <NavLink className="nav-link" to={"/"}>Home</NavLink>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="about.html">about</a>
+                                            {/* <a className="nav-link" href="about.html">about</a> */}
+                                            <NavLink className="nav-link" to={"/about"}>About</NavLink>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                 product
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
-                                                <a className="dropdown-item" href="product_list.html"> product list</a>
-                                                <a className="dropdown-item" href="single-product.html">product details</a>
+                                                {/* <a className="dropdown-item" href="product_list.html"> product list</a> */}
+                                                <NavLink className="dropdown-item" to={"/prodect"}>product list</NavLink>
+                                                {/* <a className="dropdown-item" href="single-product.html">product details</a> */}
+                                                <NavLink className="dropdown-item" to={"/prodectdetail"}>product details</NavLink>
                                             </div>
                                         </li>
                                         <li className="nav-item dropdown">
@@ -67,7 +72,7 @@ function Header(props) {
                         </div>
                     </div>
                 </div>
-                <div className="search_input" id="search_input_box">
+                {/* <div className="search_input" id="search_input_box">
                     <div className="container ">
                         <form className="d-flex justify-content-between search-inner">
                             <input type="text" className="form-control" id="search_input" placeholder="Search Here" />
@@ -75,7 +80,7 @@ function Header(props) {
                             <span className="ti-close" id="close_search" title="Close Search" />
                         </form>
                     </div>
-                </div>
+                </div> */}
             </header >
         </div>
 
