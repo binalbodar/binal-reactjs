@@ -25,27 +25,30 @@ function Header(props) {
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_1" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                product
+                                                Product
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                                 {/* <a className="dropdown-item" href="product_list.html"> product list</a> */}
-                                                <NavLink className="dropdown-item" to={"/prodect"}>product list</NavLink>
+                                                <NavLink className="dropdown-item" to={"/prodect"}>Product List</NavLink>
                                                 {/* <a className="dropdown-item" href="single-product.html">product details</a> */}
-                                                <NavLink className="dropdown-item" to={"/prodectdetail"}>product details</NavLink>
+                                                <NavLink className="dropdown-item" to={"/prodectdetail"}>Product Details</NavLink>
                                             </div>
                                         </li>
                                         <li className="nav-item dropdown">
                                             <a className="nav-link dropdown-toggle" href="blog.html" id="navbarDropdown_3" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                pages
+                                                Pages
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                                <a className="dropdown-item" href="login.html">
-                                                    login
-                                                </a>
-                                                <a className="dropdown-item" href="checkout.html">product checkout</a>
-                                                <a className="dropdown-item" href="cart.html">shopping cart</a>
-                                                <a className="dropdown-item" href="confirmation.html">confirmation</a>
-                                                <a className="dropdown-item" href="elements.html">elements</a>
+                                                {/* <a className="dropdown-item" href="login.html">login</a> */}
+                                                <NavLink className="dropdown-item" to={"/login"}>Login</NavLink>
+                                                {/* <a className="dropdown-item" href="checkout.html">product checkout</a> */}
+                                                <NavLink className="dropdown-item" to={"/prodectchek"}>Product Checkout</NavLink>
+                                                {/* <a className="dropdown-item" href="cart.html">shopping cart</a> */}
+                                                <NavLink className="dropdown-item" to={"/cart"}>Shopping Cart</NavLink>
+                                                {/* <a className="dropdown-item" href="confirmation.html">confirmation</a> */}
+                                                <NavLink className="dropdown-item" to={"/confirmation"}>Confirmation</NavLink>
+                                                {/* <a className="dropdown-item" href="elements.html">elements</a> */}
+                                                <NavLink className="dropdown-item" to={"/elements"}>Elements</NavLink>
                                             </div>
                                         </li>
                                         <li className="nav-item dropdown">
@@ -53,12 +56,15 @@ function Header(props) {
                                                 blog
                                             </a>
                                             <div className="dropdown-menu" aria-labelledby="navbarDropdown_2">
-                                                <a className="dropdown-item" href="blog.html"> blog</a>
-                                                <a className="dropdown-item" href="single-blog.html">Single blog</a>
+                                                {/* <a className="dropdown-item" href="blog.html"> blog</a>*/}
+                                                <NavLink className="dropdown-item" to={"/blog"}>Blog</NavLink>
+                                                {/* <a className="dropdown-item" href="single-blog.html">Single blog</a> */}
+                                                <NavLink className="dropdown-item" to={"/singalblog"}>Single Blog</NavLink>
                                             </div>
                                         </li>
                                         <li className="nav-item">
-                                            <a className="nav-link" href="contact.html">Contact</a>
+                                            {/* <a className="nav-link" href="contact.html">Contact</a> */}
+                                            <NavLink className="nav-link" to={"/contact"}>Contact</NavLink>
                                         </li>
                                     </ul>
                                 </div>
@@ -72,15 +78,6 @@ function Header(props) {
                         </div>
                     </div>
                 </div>
-                {/* <div className="search_input" id="search_input_box">
-                    <div className="container ">
-                        <form className="d-flex justify-content-between search-inner">
-                            <input type="text" className="form-control" id="search_input" placeholder="Search Here" />
-                            <button type="submit" className="btn" />
-                            <span className="ti-close" id="close_search" title="Close Search" />
-                        </form>
-                    </div>
-                </div> */}
             </header >
         </div>
 
