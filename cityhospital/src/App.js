@@ -7,18 +7,20 @@ import Departments from "./Container/Departments/Departments";
 import Doctors from "./Container/Doctors/Doctors";
 import Home from "./Container/Home/Home";
 import Login from "./Container/Login/Login";
+import PrivateRoute from "./Route/PrivateRoute";
+import PublicRoute from "./Route/PublicRoute";
 
 function App() {
   return (
     <>
     <Header/>
     <Switch>
-      <Route exact path={"/"} component={Home}/>
-      <Route exact path={"/departments"} component={Departments}/>
-      <Route exact path={"/doctors"} component={Doctors}/>
-      <Route exact path={"/about"} component={About}/>
-      <Route exact path={"/contact"} component={Contact}/>
-      <Route exact path={"/login"} component={Login}/>
+      <PublicRoute exact path={"/"} component={Home}/>
+      <PublicRoute exact path={"/departments"} component={Departments}/>
+      <PrivateRoute exact path={"/doctors"} component={Doctors}/>
+      <PublicRoute exact path={"/about"} component={About}/>
+      <PublicRoute exact path={"/contact"} component={Contact}/>
+      <PublicRoute restricted={true} exact path={"/login"} component={Login}/>
     </Switch>
     <Footer/>
     </>
