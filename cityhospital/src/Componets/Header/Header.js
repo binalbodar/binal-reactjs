@@ -51,8 +51,9 @@ function Header(props) {
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
-                    <a href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
-                        Appointment</a>
+                    {/* <a href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
+                        Appointment</a> */}
+                        <NavLink exact to={"/apoimen"} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make An</span> Appointment</NavLink>
                     {/* <a href="#" className="appointment-btn scrollto">
                         <span className="d-none d-md-inline">Login/ Signup</span>
                     </a> */}

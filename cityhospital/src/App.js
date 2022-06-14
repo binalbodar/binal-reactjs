@@ -7,6 +7,7 @@ import Departments from "./Container/Departments/Departments";
 import Doctors from "./Container/Doctors/Doctors";
 import Home from "./Container/Home/Home";
 import Login from "./Container/Login/Login";
+import Apoiment from "./Container/Make an apoiment/Apoiment";
 import PrivateRoute from "./Route/PrivateRoute";
 import PublicRoute from "./Route/PublicRoute";
 
@@ -21,6 +22,7 @@ function App() {
       <PublicRoute exact path={"/about"} component={About}/>
       <PublicRoute exact path={"/contact"} component={Contact}/>
       <PublicRoute restricted={true} exact path={"/login"} component={Login}/>
+      <PrivateRoute exact path={"/apoimen"} component={Apoiment}/>
     </Switch>
     <Footer/>
     </>

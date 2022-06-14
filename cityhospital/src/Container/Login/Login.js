@@ -51,7 +51,7 @@ function Login(props) {
         validationSchema: schema,
         onSubmit: (values, { resetForm }) => {
             // alert(JSON.stringify(values, null, 2));
-            sessionStorage.setItem("user", "12345")
+            sessionStorage.setItem("user", "Successfully Login")
             
             if(useType === "Login"){
                 console.log("Successfully Login");
