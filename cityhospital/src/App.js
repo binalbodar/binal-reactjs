@@ -2,6 +2,8 @@ import { Route, Switch } from "react-router-dom";
 import Footer from "./Componets/Header/Footer/Footer";
 import Header from "./Componets/Header/Header";
 import About from "./Container/About/About";
+import BookAppointment from "./Appointment/BookAppointment";
+import ListAppointment from "./Appointment/ListAppointment";
 import Contact from "./Container/Contact/Contact";
 import Departments from "./Container/Departments/Departments";
 import Doctors from "./Container/Doctors/Doctors";
@@ -23,6 +25,8 @@ function App() {
       <PublicRoute exact path={"/contact"} component={Contact}/>
       <PublicRoute restricted={true} exact path={"/login"} component={Login}/>
       <Route exact path={"/medicine"} component={Medicine}/>
+      <PrivateRoute exact path={"/bookappointment"} component={BookAppointment}/>
+      <PrivateRoute exact path={"/listappointment"} component={ListAppointment}/>
     </Switch>
     <Footer/>
     </>
