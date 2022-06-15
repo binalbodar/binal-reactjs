@@ -48,6 +48,10 @@ function Header(props) {
                                 {/* <a className="nav-link scrollto" href="./pages/contact.html">Contact</a> */}
                                 <NavLink exact className="nav-link scrollto" to={"/contact"}>Contact</NavLink>
                             </li>
+                            <li>
+                                {/* <a className="nav-link scrollto" href="./pages/contact.html">Contact</a> */}
+                                <NavLink exact className="nav-link scrollto" to={"/medicine"}>Medicine</NavLink>
+                            </li>
                         </ul>
                         <i className="bi bi-list mobile-nav-toggle" />
                     </nav>
