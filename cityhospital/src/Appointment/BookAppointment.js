@@ -5,8 +5,8 @@ import * as yup from 'yup';
 import InputBox from '../Componets/Input/InputBox';
 function BookAppointment(props) {
 
-    const history=useHistory();
-
+    const history = useHistory()
+    
     const handleInsert = () =>{
         history.push("/listappointment");
     }
@@ -27,14 +27,39 @@ function BookAppointment(props) {
             phone: '',
             date: '',
             department: '',
-            message: ''
+            message: '',
         },
         validationSchema: schema,
         onSubmit: values => {
             handleInsert(values)
+            const {
+                name,
+                email,
+                phone,
+                date,
+                department,
+                message
+            } = values;
+            let Data = {
+                name,
+                email,
+                phone,
+                date,
+                department,
+                message
+            }
+            let appoinData = JSON.parse(localStorage.getItem("appointment"));
+
+            if(appoinData == null){
+                localStorage.setItem("appointment", JSON.stringify([Data]))
+            }else{
+                appoinData.push(Data)
+                localStorage.setItem("appointment", JSON.stringify(appoinData))
+            }
+            console.log(Data);
         },
     });
-    const{handleSubmit, errors, handleChange}=formik
+    const{handleSubmit, errors, handleChange}=formik;   3
 
     return (
         <main id="main">
