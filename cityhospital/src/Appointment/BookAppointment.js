@@ -59,7 +59,7 @@ function BookAppointment(props) {
             console.log(Data);
         },
     });
-    const{handleSubmit, errors, handleChange}=formik;   3
+    const{handleSubmit, errors, handleChange}=formik; 
 
     return (
         <main id="main">
