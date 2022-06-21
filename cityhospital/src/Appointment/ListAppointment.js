@@ -1,31 +1,28 @@
-import { Form, Formik, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import * as yup from 'yup';
 
 function ListAppointment(props) {
+    const history = useHistory()
+    const [data, setdata] = useState([]);
+    const localdata = () => {
+        let localdata = JSON.parse(localStorage.getItem("apt"))
+        setdata(localdata)
+    }
+    useEffect(() => {
+        localdata();
+    },
+        [])
 
-    let schema = yup.object().shape({
-        name: yup.string().required("please enter name"),
-        email: yup.string().email("please enter valid email").required("please enter email"),
-        phone: yup.number().required("please enter number"),
-        date: yup.string().required("please select date"),
-        department: yup.string().required("please select department")
-    });
+    const handleDelete = (id) => {
+        let localdata= JSON.parse(localStorage.getItem("apt"));
+        let dData = localdata.filter((l, i) => l.id !==id)
+        localStorage.setItem("apt", JSON.stringify(dData));
+        localdata();
+    }
 
-    const formik = useFormik({
-        initialValues: {
-            name: '',
-            email: '',
-            phone: '',
-            date: '',
-            department: '',
-        },
-        validationSchema: schema,
-        onSubmit: values => {
-            console.log(JSON.stringify(values, null, 2));
-        },
-    });
+    const handleEdit = () => {
+        
+    }
 
     return (
         <main id="main">
@@ -39,13 +36,24 @@ function ListAppointment(props) {
                     </div>
                     <div className='row text-center'>
                         <div className='col-6 pb-4'>
-                        <NavLink exact to={"/bookappointment"} activeClassName={"actbtn"}>BookAppointment</NavLink>
+                            <NavLink exact to={"/bookappointment"} activeClassName={"actbtn"}>BookAppointment</NavLink>
                         </div>
                         <div className='col-6 pb-4'>
-                        <NavLink exact to={"/listappointment"} activeClassName={"actbtn"}>ListAppointment</NavLink>
+                            <NavLink exact to={"/listappointment"} activeClassName={"actbtn"}>ListAppointment</NavLink>
                         </div>
                     </div>
                 </div>
+                {
+                    data.map((d, i) => {
+                        return (
+                            <>
+                            <h5>{d.name}</h5>
+                            <button onClick={()=>handleDelete(d.id)}>Delete</button>
+                            <button onClick={()=>handleEdit(d.id)}>Edit</button>
+                            </>
+                        )
+                    })
+                }
             </section>
         </main>
 

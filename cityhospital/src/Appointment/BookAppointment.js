@@ -7,7 +7,20 @@ function BookAppointment(props) {
 
     const history = useHistory()
     
-    const handleInsert = () =>{
+    const handleInsert = (values) =>{
+
+        let iData ={
+            id : Math.floor(Math.random()* 1000),
+            ...values,
+        }
+        let appoinData = JSON.parse(localStorage.getItem("apt"));
+
+            if(appoinData == null){
+                localStorage.setItem("apt", JSON.stringify([values]))
+            }else{
+                appoinData.push(values)
+                localStorage.setItem("apt", JSON.stringify(appoinData))
+            }
         history.push("/listappointment");
     }
 
@@ -32,34 +45,10 @@ function BookAppointment(props) {
         validationSchema: schema,
         onSubmit: values => {
             handleInsert(values)
-            const {
-                name,
-                email,
-                phone,
-                date,
-                department,
-                message
-            } = values;
-            let Data = {
-                name,
-                email,
-                phone,
-                date,
-                department,
-                message
-            }
-            let appoinData = JSON.parse(localStorage.getItem("appointment"));
-
-            if(appoinData == null){
-                localStorage.setItem("appointment", JSON.stringify([Data]))
-            }else{
-                appoinData.push(Data)
-                localStorage.setItem("appointment", JSON.stringify(appoinData))
-            }
-            console.log(Data);
+            
         },
     });
-    const{handleSubmit, errors, handleChange}=formik; 
+    const{handleSubmit, errors, handleChange, touched, handleBlur}=formik; 
 
     return (
         <main id="main">
@@ -91,9 +80,11 @@ function BookAppointment(props) {
                                         placeholder="Your Name"
                                         data-rule="minlen:4"
                                         data-msg="Please enter at least 4 chars"
-                                        error={Boolean(errors.name)}
+                                        error={Boolean(errors.name && touched.name)}
                                         errorMessage={errors.name}
-                                        onChange={handleChange}/>
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
                                 </div>
                                 <div className="col-md-4 form-group mt-3 mt-md-0">
                                     <InputBox
@@ -102,9 +93,11 @@ function BookAppointment(props) {
                                         name="email"
                                         id="email"
                                         placeholder="Your Email"
-                                        error={Boolean(errors.email)}
+                                        error={Boolean(errors.email && touched.email)}
                                         errorMessage={errors.email}
-                                        onChange={handleChange}/>
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
                                 </div>
                                 <div className="col-md-4 form-group mt-3 mt-md-0">
                                     <InputBox
@@ -114,9 +107,11 @@ function BookAppointment(props) {
                                         id="phone"
                                         maxLength={10}
                                         placeholder="Your Phone"
-                                        error={Boolean(errors.phone)}
+                                        error={Boolean(errors.phone && touched.phone)}
                                         errorMessage={errors.phone}
-                                        onChange={handleChange}/>
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
                                 </div>
                             </div>
                             <div className="row">
@@ -127,9 +122,11 @@ function BookAppointment(props) {
                                         className="form-control datepicker"
                                         id="date"
                                         placeholder="Appointment Date"
-                                        error={Boolean(errors.date)}
+                                        error={Boolean(errors.date && touched.date)}
                                         errorMessage={errors.date}
-                                        onChange={handleChange}/>
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        />
                                 </div>
                                 <div className="col-md-4 form-group mt-3">
                                     <InputBox
@@ -137,10 +134,12 @@ function BookAppointment(props) {
                                         name="department" 
                                         id="department" 
                                         className="form-select" 
-                                        onChange={handleChange}
-                                        error={Boolean(errors.department)}
+                                        error={Boolean(errors.department && touched.department)}
                                         errorMessage={errors.department}
-                                        value={formik.values.select}>
+                                        value={formik.values.select}
+                                        onChange={handleChange}
+                                        onBlur={handleBlur}
+                                        >
                                         <option value>Select Department</option>
                                         <option value="Department 1">Department 1</option>
                                         <option value="Department 2">Department 2</option>
@@ -155,9 +154,11 @@ function BookAppointment(props) {
                                     name="message" rows={5}
                                     placeholder="Message (Optional)"
                                     defaultValue={""}
-                                    error={Boolean(errors.message)}
+                                    error={Boolean(errors.message && touched.message)}
                                     errorMessage={errors.message}
-                                    onChange={handleChange}/>
+                                    onChange={handleChange}
+                                    onBlur={handleBlur}
+                                    />
                             </div>
                             <div className="mb-3">
                                 <div className="loading">Loading</div>
