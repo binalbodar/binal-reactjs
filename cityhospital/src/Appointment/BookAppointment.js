@@ -1,24 +1,23 @@
 import { Form, Formik, useFormik } from 'formik';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import InputBox from '../Componets/Input/InputBox';
 function BookAppointment(props) {
-
-    const history = useHistory()
+    const history = useHistory();
     
     const handleInsert = (values) =>{
 
         let iData ={
             id : Math.floor(Math.random()* 1000),
-            ...values,
+            ...values
         }
         let appoinData = JSON.parse(localStorage.getItem("apt"));
 
-            if(appoinData == null){
-                localStorage.setItem("apt", JSON.stringify([values]))
+            if(appoinData === null){
+                localStorage.setItem("apt", JSON.stringify([iData]))
             }else{
-                appoinData.push(values)
+                appoinData.push(iData)
                 localStorage.setItem("apt", JSON.stringify(appoinData))
             }
         history.push("/listappointment");
@@ -32,7 +31,6 @@ function BookAppointment(props) {
         department: yup.string().required("please select department"),
         message: yup.string().required("please select message")
     });
-
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -48,7 +46,16 @@ function BookAppointment(props) {
             
         },
     });
-    const{handleSubmit, errors, handleChange, touched, handleBlur}=formik; 
+
+    useEffect(()=>{
+        if(props.location.state){
+            let localData = JSON.parse(localStorage.getItem("apt"));
+            let dData = localData.filter((l)=>l.id === props.location.state.id);
+            formik.setValues(dData[0]);
+        }
+    },[])
+
+    const{handleSubmit, errors, handleChange, touched, handleBlur, values}=formik; 
 
     return (
         <main id="main">
@@ -82,8 +89,9 @@ function BookAppointment(props) {
                                         data-msg="Please enter at least 4 chars"
                                         error={Boolean(errors.name && touched.name)}
                                         errorMessage={errors.name}
+                                        value={values.name}
                                         onChange={handleChange}
-                                        onBlur={handleBlur}
+                                        onBlur={handleBlur} 
                                         />
                                 </div>
                                 <div className="col-md-4 form-group mt-3 mt-md-0">
@@ -95,6 +103,7 @@ function BookAppointment(props) {
                                         placeholder="Your Email"
                                         error={Boolean(errors.email && touched.email)}
                                         errorMessage={errors.email}
+                                        value={values.email}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         />
@@ -109,6 +118,7 @@ function BookAppointment(props) {
                                         placeholder="Your Phone"
                                         error={Boolean(errors.phone && touched.phone)}
                                         errorMessage={errors.phone}
+                                        value={values.phone}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         />
@@ -124,6 +134,7 @@ function BookAppointment(props) {
                                         placeholder="Appointment Date"
                                         error={Boolean(errors.date && touched.date)}
                                         errorMessage={errors.date}
+                                        value={values.date}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         />
@@ -136,7 +147,7 @@ function BookAppointment(props) {
                                         className="form-select" 
                                         error={Boolean(errors.department && touched.department)}
                                         errorMessage={errors.department}
-                                        value={formik.values.select}
+                                        value={values.department}
                                         onChange={handleChange}
                                         onBlur={handleBlur}
                                         >
@@ -156,6 +167,7 @@ function BookAppointment(props) {
                                     defaultValue={""}
                                     error={Boolean(errors.message && touched.message)}
                                     errorMessage={errors.message}
+                                    value={values.message}
                                     onChange={handleChange}
                                     onBlur={handleBlur}
                                     />

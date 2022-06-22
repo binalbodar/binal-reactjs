@@ -1,29 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 function ListAppointment(props) {
     const history = useHistory()
-    const [data, setdata] = useState([]);
-    const localdata = () => {
-        let localdata = JSON.parse(localStorage.getItem("apt"))
-        setdata(localdata)
+    const [data, setData] = useState([]);
+    const loadData = () => {
+        let localData = JSON.parse(localStorage.getItem("apt"))
+        setData(localData);
+    }
+    const handleDelete = (id) => {
+        let localData= JSON.parse(localStorage.getItem("apt"));
+        let dData = localData.filter((l, i) => l.id !==id)
+        localStorage.setItem("apt", JSON.stringify(dData));
+        loadData();
+    }
+
+    const handleEdit = (id) => {
+        history.push("/bookappointment", {"id": id})
     }
     useEffect(() => {
-        localdata();
+        loadData();
     },
         [])
-
-    const handleDelete = (id) => {
-        let localdata= JSON.parse(localStorage.getItem("apt"));
-        let dData = localdata.filter((l, i) => l.id !==id)
-        localStorage.setItem("apt", JSON.stringify(dData));
-        localdata();
-    }
-
-    const handleEdit = () => {
-        
-    }
-
     return (
         <main id="main">
             <section id="appointment" className="appointment">
@@ -47,9 +45,25 @@ function ListAppointment(props) {
                     data.map((d, i) => {
                         return (
                             <>
-                            <h5>{d.name}</h5>
-                            <button onClick={()=>handleDelete(d.id)}>Delete</button>
-                            <button onClick={()=>handleEdit(d.id)}>Edit</button>
+                                <div className='container'>
+                                    <div className='row'>
+                                        <h5>{d.name}</h5>
+                                        <hr/>
+                                        <h5>{d.email}</h5>
+                                        <hr/>
+                                        <h5>{d.phone}</h5>
+                                        <hr/>
+                                        <h5>{d.date}</h5>
+                                        <hr/>
+                                        <h5>{d.department}</h5>
+                                        <hr/>
+                                        <h5>{d.message}</h5>
+                                        <hr/>
+                                    </div>
+                                    <button onClick={()=>handleDelete(d.id)}>Delete</button>
+                                    <button onClick={()=>handleEdit(d.id)}>Edit</button>
+                                    <hr/>
+                                </div>
                             </>
                         )
                     })
