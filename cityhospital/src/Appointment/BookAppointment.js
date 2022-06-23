@@ -1,9 +1,10 @@
 import { Form, Formik, useFormik } from 'formik';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import InputBox from '../Componets/Input/InputBox';
 function BookAppointment(props) {
+    const[update, setUpdate] = useState(false)
     const history = useHistory();
     
     const handleInsert = (values) =>{
@@ -20,6 +21,20 @@ function BookAppointment(props) {
                 appoinData.push(iData)
                 localStorage.setItem("apt", JSON.stringify(appoinData))
             }
+        history.push("/listappointment");
+    }
+    const handleUpdateDate = (values) => {
+        let localData = JSON.parse(localStorage.getItem("apt"));
+        let uData = localData.map((l) => {
+            if(l.id === values.id){
+                return values
+            }else{
+                return l
+            }
+        })
+        localStorage.setItem("apt", JSON.stringify(uData));
+        setUpdate(false);
+        formik.resetForm();
         history.push("/listappointment");
     }
 
@@ -42,8 +57,11 @@ function BookAppointment(props) {
         },
         validationSchema: schema,
         onSubmit: values => {
-            handleInsert(values)
-            
+            if(update){
+                handleUpdateDate(values)
+            }else{
+                handleInsert(values)
+            }
         },
     });
 
@@ -52,6 +70,7 @@ function BookAppointment(props) {
             let localData = JSON.parse(localStorage.getItem("apt"));
             let dData = localData.filter((l)=>l.id === props.location.state.id);
             formik.setValues(dData[0]);
+            setUpdate(true)
         }
     },[])
 
@@ -177,7 +196,19 @@ function BookAppointment(props) {
                                 <div className="error-message" />
                                 <div className="sent-message">Your appointment request has been sent successfully. Thank you!</div>
                             </div>
-                            <div className="text-center"><button type='submit'>Submit</button></div>
+                            {
+                                update ?(
+                                    <div className="text-center">
+                                        <button type='submit'>Update An Appointment</button>
+                                    </div>
+                                )
+                                :
+                                (
+                                    <div className="text-center">
+                                        <button type='submit'>Make An Appointment</button>
+                                    </div>
+                                )
+                            }
                         </Form>
                     </Formik>
                 </div>
