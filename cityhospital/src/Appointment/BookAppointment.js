@@ -211,6 +211,7 @@ function BookAppointment(props) {
                             }
                         </Form>
                     </Formik>
+                    
                 </div>
             </section>
         </main>
