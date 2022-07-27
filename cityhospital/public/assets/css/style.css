@@ -1755,3 +1755,13 @@ section {
 .actbtn{
   border-bottom: 2px solid;
 }
+
+.light{
+  background-color: #fff !important;
+  color: #000 !important;
+}
+
+.dark{
+  background-color: #000 !important;
+  color: #fff !important;
+}
