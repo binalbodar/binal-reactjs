@@ -16,13 +16,15 @@ export const ThemeProvider = ({children}) => {
         dispatch({ type: ActionTypes.TOOGEL_THEME, payload: newtheme })
     }
 
-    <ThemeContext.Provider
+    return(
+        <ThemeContext.Provider
         value={{
             ...state,
             toogle_theme
         }}>
         {children}
     </ThemeContext.Provider>
+)
 }
 
 export default ThemeContext
