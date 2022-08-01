@@ -16,6 +16,7 @@ export const ThemeProvider = ({children}) => {
         dispatch({ type: ActionTypes.TOOGEL_THEME, payload: newtheme })
     }
 
+
     return (
         <ThemeContext.Provider
         value={{
