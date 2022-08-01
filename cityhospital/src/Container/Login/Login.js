@@ -1,10 +1,14 @@
 import { Form, Formik, useFormik } from 'formik';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import * as yup from 'yup';
+import { signUpAPI } from '../../common/apis/auth.api';
 
 function Login(props) {
     const [useType, setUseType] = useState("Login");
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
 
     let Login = {
         email: yup.string().email("please enter valid email").required("please enter email"),
@@ -45,7 +49,7 @@ function Login(props) {
     }
     
     // const schema = yup.object().shape(Login);
-    
+    const dispatch = useDispatch()
     const formik = useFormik({
         initialValues : initiValue,
         validationSchema: schema,
@@ -61,6 +65,13 @@ function Login(props) {
                 console.log("Successfully Forget Passowrd");
             }
             resetForm()
+
+            let data = {
+                email: email,
+                password: password
+            }
+
+            dispatch(signUpAPI(data))
         },
     });
 
