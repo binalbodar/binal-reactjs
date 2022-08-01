@@ -67,8 +67,8 @@ function Login(props) {
             resetForm()
 
             let data = {
-                email: email,
-                password: password
+                email: values.email,
+                password: values.password
             }
 
             dispatch(signUpAPI(data))

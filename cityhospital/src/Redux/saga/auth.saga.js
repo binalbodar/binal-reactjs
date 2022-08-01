@@ -5,6 +5,7 @@ import * as ActionTypes from "../ActionTypes"
 
 function* signUP(action) {
    try {
+      console.log(action.payload);
       const data = yield call(signUpAPI, action.payload);
       yield put(emailVerificaton(data));
    } catch (e) {
