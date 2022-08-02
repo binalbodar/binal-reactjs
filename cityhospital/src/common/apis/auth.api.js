@@ -6,27 +6,37 @@ export const signUpAPI = (data) => {
     return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
-                // Signed in 
                 const user = userCredential.user;
-                // ...
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         sendEmailVerification(user)
-                        // User is signed in, see docs for a list of available properties
-                        // https://firebase.google.com/docs/reference/js/firebase.User
                         const uid = user.uid;
-                        // ...
                     } else {
-                        // User is signed out
-                        // ...
+                       
+                    }
+                });
+            })
+            .then((dataEmailVerification)=>{
+                onAuthStateChanged(auth, (user) => {
+                    if (user) {
+                        if(user.emailVerified){
+                            console.log("Email Successfully");
+                        }else{
+                            console.log("Plese Email Verified");
+                        }
+                    } else {
+                        console.log("Someteng Whot Wrong");
                     }
                 });
             })
             .catch((error) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
-                console.log(errorCode);
-                // ..
+                if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
+                    console.log("Email Already Used");
+                } else {
+                    console.log(errorCode);
+                }
             });
     })
 
