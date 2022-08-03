@@ -15,28 +15,31 @@ import PublicRoute from "./Route/PublicRoute";
 import { Provider } from 'react-redux'
 import { configurStore } from "./Redux/Store";
 import { ThemeProvider } from "./context/ThemeContext";
+import { SnackbarProvider } from 'notistack';
 
 function App() {
   const store = configurStore();
   return (
     <>
-      <ThemeProvider>
-        <Provider store={store}>
-          <Header />
-          <Switch>
-            <PublicRoute exact path={"/"} component={Home} />
-            <PublicRoute exact path={"/departments"} component={Departments} />
-            <PrivateRoute exact path={"/doctors"} component={Doctors} />
-            <PublicRoute exact path={"/about"} component={About} />
-            <PublicRoute exact path={"/contact"} component={Contact} />
-            <PublicRoute restricted={true} exact path={"/login"} component={Login} />
-            <Route exact path={"/medicine"} component={Medicine} />
-            <PrivateRoute exact path={"/bookappointment"} component={BookAppointment} />
-            <PrivateRoute exact path={"/listappointment"} component={ListAppointment} />
-          </Switch>
-          <Footer />
-        </Provider>
-      </ThemeProvider>
+      <SnackbarProvider maxSnack={3}>
+        <ThemeProvider>
+          <Provider store={store}>
+            <Header />
+            <Switch>
+              <PublicRoute exact path={"/"} component={Home} />
+              <PublicRoute exact path={"/departments"} component={Departments} />
+              <PrivateRoute exact path={"/doctors"} component={Doctors} />
+              <PublicRoute exact path={"/about"} component={About} />
+              <PublicRoute exact path={"/contact"} component={Contact} />
+              <PublicRoute restricted={true} exact path={"/login"} component={Login} />
+              <Route exact path={"/medicine"} component={Medicine} />
+              <PrivateRoute exact path={"/bookappointment"} component={BookAppointment} />
+              <PrivateRoute exact path={"/listappointment"} component={ListAppointment} />
+            </Switch>
+            <Footer />
+          </Provider>
+        </ThemeProvider>
+      </SnackbarProvider>
     </>
   );
 }

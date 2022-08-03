@@ -20,12 +20,12 @@ export const signUpAPI = (data) => {
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         if(user.emailVerified){
-                            console.log("Email Successfully");
+                            resolve({payload: "Email Successfully"});
                         }else{
-                            console.log("Plese Email Verified");
+                            resolve({payload: "Please Verified Your Email Id"});
                         }
                     } else {
-                        console.log("Someteng Whot Wrong");
+                        reject({payload: "Something Weot Wrong"});
                     }
                 });
             })
@@ -33,9 +33,9 @@ export const signUpAPI = (data) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
-                    console.log("Email Already Used");
+                    reject({payload: "Email Id Already Used"});
                 } else {
-                    console.log(errorCode);
+                    reject({payload: errorCode});
                 }
             });
     })
