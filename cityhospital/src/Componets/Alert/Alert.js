@@ -7,6 +7,8 @@ function Alert(props) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const dispach = useDispatch()
 
+    console.log(alert);
+
     useEffect(() => {
         if (alert.text !== '') {
             enqueueSnackbar(alert.text, {

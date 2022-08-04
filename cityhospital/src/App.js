@@ -31,7 +31,7 @@ function App() {
               <PrivateRoute exact path={"/doctors"} component={Doctors} />
               <PublicRoute exact path={"/about"} component={About} />
               <PublicRoute exact path={"/contact"} component={Contact} />
-              <PublicRoute restricted={true} exact path={"/login"} component={Login} />
+              <PublicRoute exact path={"/login"} component={Login} />
               <Route exact path={"/medicine"} component={Medicine} />
               <PrivateRoute exact path={"/bookappointment"} component={BookAppointment} />
               <PrivateRoute exact path={"/listappointment"} component={ListAppointment} />
