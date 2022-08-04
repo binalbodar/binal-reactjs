@@ -4,6 +4,7 @@ const intialstate ={
     color: ''
 }
 export const alertReduser = (state=intialstate, action)=>{
+    console.log(action.type, action.payload);
     switch (action.type){
         case ActionTypes.SET_ALERT:
             return{

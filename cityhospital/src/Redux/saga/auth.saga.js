@@ -7,11 +7,11 @@ import * as ActionTypes from "../ActionTypes"
 function* signUP(action) {
    try {
       const user = yield call(signUpAPI, action.payload);
+      yield put(setAlert({text:user.payload, color:"success"}))
       yield put(emailVerificaton(user));
-      yield put(setAlert({text:user.payload, color:"Success"}))
    } catch (e) {
-      yield put({type: "USER_FETCH_FAILED", message: e.message});
       yield put (resetAlert({text:e.payload, color:"error"}))
+      yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
 }
 function* watchSaga() {

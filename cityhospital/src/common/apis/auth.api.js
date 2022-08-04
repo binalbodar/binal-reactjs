@@ -7,6 +7,7 @@ export const signUpAPI = (data) => {
         createUserWithEmailAndPassword(auth, data.email, data.password)
             .then((userCredential) => {
                 const user = userCredential.user;
+                console.log(user);
                 onAuthStateChanged(auth, (user) => {
                     if (user) {
                         sendEmailVerification(user)
@@ -25,7 +26,7 @@ export const signUpAPI = (data) => {
                             resolve({payload: "Please Verified Your Email Id"});
                         }
                     } else {
-                        reject({payload: "Something Weot Wrong"});
+                        reject({payload: "Something Went Wrong."});
                     }
                 });
             })

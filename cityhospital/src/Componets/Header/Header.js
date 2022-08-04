@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import ThemeContext from '../../context/ThemeContext';
+import Alert from '../Alert/Alert';
 
 function Header(props) {
     const theme = useContext(ThemeContext)
@@ -71,6 +72,7 @@ function Header(props) {
                     <NavLink to={"/login"} className="appointment-btn scrollto">
                         <span className="d-none d-md-inline">Login/ Signup</span>
                     </NavLink>
+                    <Alert />
                 </div>
             </header>
         </div>
