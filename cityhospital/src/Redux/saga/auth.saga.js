@@ -1,6 +1,6 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects'
 import { signUpAPI } from '../../common/apis/auth.api';
-import { resetAlert, setAlert } from '../Action/alert.action';
+import { setAlert } from '../Action/alert.action';
 import { emailVerificaton } from '../Action/auth.action';
 import * as ActionTypes from "../ActionTypes"
 
@@ -10,7 +10,7 @@ function* signUP(action) {
       yield put(setAlert({text:user.payload, color:"success"}))
       yield put(emailVerificaton(user));
    } catch (e) {
-      yield put (resetAlert({text:e.payload, color:"error"}))
+      yield put (setAlert({text:e.payload, color:"error"}))
       yield put({type: "USER_FETCH_FAILED", message: e.message});
    }
 }

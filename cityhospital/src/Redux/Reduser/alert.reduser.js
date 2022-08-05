@@ -17,7 +17,7 @@ export const alertReduser = (state=intialstate, action)=>{
                 ...state,
                 text: '',
                 color: ''
-            }
+            } 
         default:
             return state;
     }

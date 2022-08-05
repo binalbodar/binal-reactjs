@@ -5,7 +5,7 @@ import Alert from '../Alert/Alert';
 
 function Header(props) {
     const theme = useContext(ThemeContext)
-    
+
     console.log(theme.theme);
     return (
         <div className="main-header">
@@ -15,7 +15,7 @@ function Header(props) {
                         <i className="bi bi-envelope" /> <a href="mailto:contact@example.com">cityhospital@example.com</a>
                         <i className="bi bi-phone" /> +91 9988776655
                     </div>
-                    <button onClick={() => {theme.toogle_theme(theme.theme)}}>
+                    <button onClick={() => { theme.toogle_theme(theme.theme) }}>
                         Change Theme
                     </button>
                     <div className="d-none d-lg-flex social-links align-items-center">
@@ -65,7 +65,7 @@ function Header(props) {
                     </nav>
                     {/* <a href="./pages/appointment.html" className="appointment-btn scrollto"><span className="d-none d-md-inline">Make an</span>
                         Appointment</a> */}
-                        <NavLink exact to={"/bookappointment"} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make An</span> Appointment</NavLink>
+                    <NavLink exact to={"/bookappointment"} className="appointment-btn scrollto"><span className="d-none d-md-inline">Make An</span> Appointment</NavLink>
                     {/* <a href="#" className="appointment-btn scrollto">
                         <span className="d-none d-md-inline">Login/ Signup</span>
                     </a> */}

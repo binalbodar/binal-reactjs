@@ -1,9 +1,9 @@
 import * as ActionTypes from "../ActionTypes";
 
-export const setAlert= (data) => (dispach) =>{
+export const setAlert= (data) => (dispatch) =>{
     console.log(data);
-    dispach({type: ActionTypes.SET_ALERT, payload:data})
+    dispatch({type: ActionTypes.SET_ALERT, payload:data})
 }
-export const resetAlert= () => (dispach)=>{
-    dispach({type: ActionTypes.RESET_ALERT})
+export const resetAlert= () => (dispatch)=>{
+    dispatch({type: ActionTypes.RESET_ALERT})
 }

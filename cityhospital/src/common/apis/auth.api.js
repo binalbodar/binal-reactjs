@@ -19,6 +19,7 @@ export const signUpAPI = (data) => {
             })
             .then((dataEmailVerification)=>{
                 onAuthStateChanged(auth, (user) => {
+                    console.log(user);
                     if (user) {
                         if(user.emailVerified){
                             resolve({payload: "Email Successfully"});
