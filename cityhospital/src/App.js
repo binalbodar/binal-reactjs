@@ -13,12 +13,11 @@ import Medicine from "./Container/Medicine/Medicine";
 import PrivateRoute from "./Route/PrivateRoute";
 import PublicRoute from "./Route/PublicRoute";
 import { Provider } from 'react-redux'
-import { configurStore } from "./Redux/Store";
 import { ThemeProvider } from "./context/ThemeContext";
 import { SnackbarProvider } from 'notistack';
+import { store } from "./Redux/Store";
 
 function App() {
-  const store = configurStore();
   return (
     <>
       <SnackbarProvider maxSnack={3}>

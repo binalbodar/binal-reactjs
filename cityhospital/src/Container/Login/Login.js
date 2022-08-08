@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import * as yup from 'yup';
-import { signupAction } from '../../Redux/Action/auth.action';
+import { loginAction, signupAction } from '../../Redux/Action/auth.action';
 
 function Login(props) {
     const [useType, setUseType] = useState("Login");
@@ -27,51 +27,60 @@ function Login(props) {
 
     let schema, initiValue;
 
-    if(useType === "Login"){
+    if (useType === "Login") {
         schema = yup.object().shape(Login);
         initiValue = {
             email: "",
             password: ""
         }
 
-    }else if(useType === "SignUp"){
-        schema = yup.object().shape(SignUp);  
+    } else if (useType === "SignUp") {
+        schema = yup.object().shape(SignUp);
         initiValue = {
             name: "",
             email: "",
             password: ""
-        }      
-    }else if(useType === "forgetPassowrd"){
-        schema = yup.object().shape(forgetPassowrd); 
+        }
+    } else if (useType === "forgetPassowrd") {
+        schema = yup.object().shape(forgetPassowrd);
         initiValue = {
             email: ""
-        } 
+        }
     }
-    
+
     // const schema = yup.object().shape(Login);
     const dispatch = useDispatch()
     const formik = useFormik({
-        initialValues : initiValue,
+        initialValues: initiValue,
         validationSchema: schema,
         onSubmit: (values, { resetForm }) => {
             // alert(JSON.stringify(values, null, 2));
             sessionStorage.setItem("user", "Successfully Login")
-            
-            if(useType === "Login"){
+
+            //LOGIN
+            if (useType === "Login") {
                 console.log("Successfully Login");
-            }else if(useType === "SignUp"){
+
+                let data = {
+                    email: values.email,
+                    password: values.password
+                }
+                dispatch(loginAction(data))
+
+                //SIGN UP
+            } else if (useType === "SignUp") {
                 console.log("Successfully SignUp");
-            }else if(useType === "forgetPassowrd"){
+
+                let data = {
+                    email: values.email,
+                    password: values.password
+                }
+                dispatch(signupAction(data));
+
+            } else if (useType === "forgetPassowrd") {
                 console.log("Successfully Forget Passowrd");
             }
             resetForm()
-
-            let data = {
-                email: values.email,
-                password: values.password
-            }
-
-            dispatch(signupAction(data))
         },
     });
 
@@ -92,23 +101,23 @@ function Login(props) {
                             <Form onSubmit={formik.handleSubmit}>
                                 {
                                     useType === 'forgetPassowrd' ?
-                                    <FormGroup>
-                                        <Label for="exampleEmail">
-                                            Email
-                                        </Label>
-                                        <Input
-                                            id="exampleEmail"
-                                            name="email"
-                                            placeholder="Enter Email"
-                                            type="email"
-                                            onChange={formik.handleChange}
-                                        />
-                                        {
-                                                formik.errors.email ? 
-                                                <p>{formik.errors.email}</p> : null
+                                        <FormGroup>
+                                            <Label for="exampleEmail">
+                                                Email
+                                            </Label>
+                                            <Input
+                                                id="exampleEmail"
+                                                name="email"
+                                                placeholder="Enter Email"
+                                                type="email"
+                                                onChange={formik.handleChange}
+                                            />
+                                            {
+                                                formik.errors.email ?
+                                                    <p>{formik.errors.email}</p> : null
                                             }
-                                    </FormGroup>
-                                    : null
+                                        </FormGroup>
+                                        : null
                                 }
                                 {
                                     useType === "SignUp" ?
@@ -123,8 +132,8 @@ function Login(props) {
                                                 onChange={formik.handleChange}
                                             />
                                             {
-                                                formik.errors.name ? 
-                                                <p>{formik.errors.name}</p> : null
+                                                formik.errors.name ?
+                                                    <p>{formik.errors.name}</p> : null
                                             }
                                         </FormGroup> :
                                         null
@@ -144,8 +153,8 @@ function Login(props) {
                                                 onChange={formik.handleChange}
                                             />
                                             {
-                                                formik.errors.email ? 
-                                                <p>{formik.errors.email}</p> : null
+                                                formik.errors.email ?
+                                                    <p>{formik.errors.email}</p> : null
                                             }
                                         </FormGroup>
                                         <FormGroup>
@@ -153,15 +162,15 @@ function Login(props) {
                                                 Password
                                             </Label>
                                             <Input
-                                                id="examplePassword" 
+                                                id="examplePassword"
                                                 name="password"
                                                 placeholder="password"
                                                 type="password"
                                                 onChange={formik.handleChange}
                                             />
                                             {
-                                                formik.errors.password ? 
-                                                <p>{formik.errors.password}</p> : null
+                                                formik.errors.password ?
+                                                    <p>{formik.errors.password}</p> : null
                                             }
                                         </FormGroup>
                                     </>

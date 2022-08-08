@@ -8,8 +8,10 @@ const sagaMiddleware = createSagaMiddleware()
 
 const middleware = [thunk, sagaMiddleware]
 
-export const configurStore = () =>{
+const configurStore = () =>{
     let store = createStore(rootReduser, applyMiddleware(...middleware))
     sagaMiddleware.run(rootSaga)
     return store
 }
+ 
+export const store = configurStore();
