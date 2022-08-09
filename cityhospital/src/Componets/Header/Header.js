@@ -2,11 +2,14 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import ThemeContext from '../../context/ThemeContext';
 import Alert from '../Alert/Alert';
+import { useSelector } from 'react-redux';
 
 function Header(props) {
     const theme = useContext(ThemeContext)
-
     console.log(theme.theme);
+
+    let auth = useSelector(state => state.auth)
+    console.log(auth);
     return (
         <div className="main-header">
             <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>

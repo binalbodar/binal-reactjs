@@ -12,3 +12,4 @@ export const RESET_ALERT = "RESET_ALERT"
 
 //LOGIN
 export const LOGIN_USER = "LOGIN_USER"
+export const LOGIN_LOGD = "LOGIN_LOGD"

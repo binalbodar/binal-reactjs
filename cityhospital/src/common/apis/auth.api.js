@@ -13,21 +13,21 @@ export const signUpAPI = (data) => {
                         sendEmailVerification(user)
                         const uid = user.uid;
                     } else {
-                       
+
                     }
                 });
             })
-            .then((dataEmailVerification)=>{
+            .then((dataEmailVerification) => {
                 onAuthStateChanged(auth, (user) => {
                     console.log(user);
                     if (user) {
-                        if(user.emailVerified){
-                            resolve({payload: "Email Successfully"});
-                        }else{
-                            resolve({payload: "Please Verified Your Email Id"});
+                        if (user.emailVerified) {
+                            resolve({ payload: "Email Successfully" });
+                        } else {
+                            resolve({ payload: "Please Verified Your Email Id" });
                         }
                     } else {
-                        reject({payload: "Something Went Wrong."});
+                        reject({ payload: "Something Went Wrong." });
                     }
                 });
             })
@@ -35,9 +35,9 @@ export const signUpAPI = (data) => {
                 const errorCode = error.code;
                 const errorMessage = error.message;
                 if (errorCode.localeCompare("auth/email-already-in-use") === 0) {
-                    reject({payload: "Email Id Already Used"});
+                    reject({ payload: "Email Id Already Used" });
                 } else {
-                    reject({payload: errorCode});
+                    reject({ payload: errorCode });
                 }
             });
     })
@@ -45,13 +45,24 @@ export const signUpAPI = (data) => {
 
 export const loginAPI = (data) => {
     console.log(data);
-    return new Promise((resolve, reject)=>{
+    return new Promise((resolve, reject) => {
         signInWithEmailAndPassword(auth, data.email, data.password)
-        .then((user)=>{
-            console.log(user);
-        })
-        .catch((e)=>{
-            console.log(e);
-        })
+            .then((user) => {
+                if (user.user.emailVerified) {
+                    // resolve({ payload: "Login Is Successfully" })
+                    resolve({ payload: user.user })
+                } else {
+                    reject({ payload: "Please Enter Velid Email And Password" })
+                }
+            })
+            .catch((error) => {
+                if (error.code.localeCompare("auth/user-not-found") === 0) {
+                    reject({ payload: "Please Email Ragistar" })
+                } else if (error.code.localeCompare("auth/wrong-password") === 0) {
+                    reject({ payload: "Wrong Email Or Password" })
+                } else {
+                    reject({ payload: error.code });
+                }
+            })
     })
 }
