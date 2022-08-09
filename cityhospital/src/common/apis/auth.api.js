@@ -49,8 +49,7 @@ export const loginAPI = (data) => {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then((user) => {
                 if (user.user.emailVerified) {
-                    // resolve({ payload: "Login Is Successfully" })
-                    resolve({ payload: user.user })
+                    resolve({ payload: "Login Is Successfully" })
                 } else {
                     reject({ payload: "Please Enter Velid Email And Password" })
                 }

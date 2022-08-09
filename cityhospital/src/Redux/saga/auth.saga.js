@@ -19,7 +19,6 @@ function* login(action) {
    try{
       const user = yield call (loginAPI, action.payload);
       yield put(setAlert({text:user.payload, color:"success"}))
-      yield put(alertloginAction(user.user))
    }catch(e){
       yield put (setAlert({text:e.payload, color:"error"}))
    }
