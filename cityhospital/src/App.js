@@ -15,28 +15,31 @@ import PublicRoute from "./Route/PublicRoute";
 import { Provider } from 'react-redux'
 import { ThemeProvider } from "./context/ThemeContext";
 import { SnackbarProvider } from 'notistack';
-import { store } from "./Redux/Store";
+import { persistor, store } from "./Redux/Store";
+import { PersistGate } from 'redux-persist/integration/react'
 
 function App() {
   return (
     <>
       <SnackbarProvider maxSnack={3}>
         <ThemeProvider>
-          <Provider store={store}>
-            <Header />
-            <Switch>
-              <PublicRoute exact path={"/"} component={Home} />
-              <PublicRoute exact path={"/departments"} component={Departments} />
-              <PrivateRoute exact path={"/doctors"} component={Doctors} />
-              <PublicRoute exact path={"/about"} component={About} />
-              <PublicRoute exact path={"/contact"} component={Contact} />
-              <PublicRoute exact path={"/login"} component={Login} />
-              <Route exact path={"/medicine"} component={Medicine} />
-              <PrivateRoute exact path={"/bookappointment"} component={BookAppointment} />
-              <PrivateRoute exact path={"/listappointment"} component={ListAppointment} />
-            </Switch>
-            <Footer />
-          </Provider>
+          <PersistGate loading={null} persistor={persistor}>
+            <Provider store={store}>
+              <Header />
+              <Switch>
+                <PublicRoute exact path={"/"} component={Home} />
+                <PublicRoute exact path={"/departments"} component={Departments} />
+                <PrivateRoute exact path={"/doctors"} component={Doctors} />
+                <PublicRoute exact path={"/about"} component={About} />
+                <PublicRoute exact path={"/contact"} component={Contact} />
+                <PublicRoute exact path={"/login"} component={Login} />
+                <Route exact path={"/medicine"} component={Medicine} />
+                <PrivateRoute exact path={"/bookappointment"} component={BookAppointment} />
+                <PrivateRoute exact path={"/listappointment"} component={ListAppointment} />
+              </Switch>
+              <Footer />
+            </Provider>
+          </PersistGate>
         </ThemeProvider>
       </SnackbarProvider>
     </>
