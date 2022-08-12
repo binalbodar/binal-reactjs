@@ -10,6 +10,10 @@ function Header(props) {
 
     let auth = useSelector(state => state.auth)
     console.log(auth);
+
+    const hendallogout = () => {
+        console.log("hendallogout");
+    }
     return (
         <div className="main-header">
             <div id="topbar" className={`d-flex align-items-center fixed-top ${theme.theme}`}>
@@ -78,8 +82,8 @@ function Header(props) {
                                 <span className="d-none d-md-inline">Login/ Signup</span>
                             </NavLink>
                         :
-                            <NavLink to={"/login"} className="appointment-btn scrollto">
-                                <span className="d-none d-md-inline">Logaut</span>
+                            <NavLink onClick={() => hendallogout()} to={"/login"} className="appointment-btn scrollto">
+                                <span className="d-none d-md-inline">Logout</span>
                             </NavLink>
                     }
                     <Alert />

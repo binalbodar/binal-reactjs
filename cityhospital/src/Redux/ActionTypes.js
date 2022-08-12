@@ -14,3 +14,4 @@ export const RESET_ALERT = "RESET_ALERT"
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGIN_LOGD = "LOGIN_LOGD"
 
+//LOGOUT
