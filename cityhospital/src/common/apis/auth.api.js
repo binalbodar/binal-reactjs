@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signUpAPI = (data) => {
@@ -63,5 +63,17 @@ export const loginAPI = (data) => {
                     reject({ payload: error.code });
                 }
             })
+    })
+}
+
+export const logoutAPI = () => {
+    return new Promise ((resolve, reject) => {
+        signOut(auth)
+        .then((user) => {
+            resolve({payload: "Logout Successfuly"})
+        })
+        .catch((error) => {
+            reject({payload: "Something Went Wrong"})
+        })
     })
 }

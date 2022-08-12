@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import ThemeContext from '../../context/ThemeContext';
 import Alert from '../Alert/Alert';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { logoutAction } from '../../Redux/Action/auth.action';
 
 function Header(props) {
     const theme = useContext(ThemeContext)
@@ -11,8 +12,10 @@ function Header(props) {
     let auth = useSelector(state => state.auth)
     console.log(auth);
 
+    const dispatch = useDispatch()
+
     const hendallogout = () => {
-        console.log("hendallogout");
+        dispatch(logoutAction())
     }
     return (
         <div className="main-header">

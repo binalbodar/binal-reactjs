@@ -17,3 +17,12 @@ export const loginAction = (data) => (dispatch) => {
 export const alertloginAction = (data) => (dispatch) => {
     dispatch({type: ActionTypes.LOGIN_LOGD, payload: data})
 } 
+
+//LOGOUT 
+export const logoutAction = () => (dispatch) => {
+    dispatch({type: ActionTypes.LOGOUT_USER})
+}
+
+export const logoutlogedAction = () => (dispatch) => {
+    dispatch({type: ActionTypes.LOGOUT_LOGED})
+}
