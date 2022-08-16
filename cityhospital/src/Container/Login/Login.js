@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import * as yup from 'yup';
-import { loginAction, signupAction } from '../../Redux/Action/auth.action';
+import { googlesignupAction, loginAction, signupAction } from '../../Redux/Action/auth.action';
 
 function Login(props) {
     const [useType, setUseType] = useState("Login");
@@ -46,6 +46,10 @@ function Login(props) {
         initiValue = {
             email: ""
         }
+    }
+
+    const googlehandelsignup = () => {
+        dispatch(googlesignupAction())
     }
 
     // const schema = yup.object().shape(Login);
@@ -194,6 +198,7 @@ function Login(props) {
                                                 onClick={() => setUseType("Login")}>Login</Button>
                                         </div>
                                 }
+                                <button onClick={() => googlehandelsignup()}>SignIn With Google</button>
                             </Form>
                         </Formik>
                     </div>

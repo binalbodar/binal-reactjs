@@ -17,3 +17,6 @@ export const LOGIN_LOGD = "LOGIN_LOGD"
 //LOGOUT
 export const LOGOUT_USER = "LOGOUT_USER"
 export const LOGOUT_LOGED = "LOGOUT_LOGED"
+
+//GOOGLE SIGNUP
+export const GOOGLE_SIGNUP = "GOOGLE_SIGNUP"

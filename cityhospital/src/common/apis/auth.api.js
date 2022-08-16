@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signUpAPI = (data) => {
@@ -67,13 +67,38 @@ export const loginAPI = (data) => {
 }
 
 export const logoutAPI = () => {
-    return new Promise ((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         signOut(auth)
-        .then((user) => {
-            resolve({payload: "Logout Successfuly"})
-        })
-        .catch((error) => {
-            reject({payload: "Something Went Wrong"})
-        })
+            .then((user) => {
+                resolve({ payload: "Logout Successfuly" })
+            })
+            .catch((error) => {
+                reject({ payload: "Something Went Wrong" })
+            })
+    })
+}
+
+export const googlesignupAPI = () => {
+    return new Promise((resolve, reject) => {
+        const provider = new GoogleAuthProvider();
+        signInWithPopup(auth, provider)
+            .then((result) => {
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                const credential = GoogleAuthProvider.credentialFromResult(result);
+                const token = credential.accessToken;
+                // The signed-in user info.
+                const user = result.user;
+                resolve({payload: user})
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                // The email of the user's account used.
+                const email = error.customData.email;
+                // The AuthCredential type that was used.
+                const credential = GoogleAuthProvider.credentialFromError(error);
+                reject({payload: errorCode})
+            });
     })
 }
