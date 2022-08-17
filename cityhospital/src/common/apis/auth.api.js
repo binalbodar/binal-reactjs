@@ -110,7 +110,6 @@ export const forgetPassowrdAPI = (data) => {
                 resolve({ payload: "Please Check Your Email Id." })
             })
             .catch((error) => {
-                console.log(error);
                 reject({ payload: "Email Id Is Wrong." })
             })
     })
