@@ -1,5 +1,5 @@
 import { all, call, put, takeEvery } from 'redux-saga/effects'
-import { googlesignupAPI, loginAPI, logoutAPI, signUpAPI } from '../../common/apis/auth.api';
+import { forgetPassowrdAPI, googlesignupAPI, loginAPI, logoutAPI, signUpAPI } from '../../common/apis/auth.api';
 import { auth } from '../../firebase';
 import { history } from '../../history';
 import { setAlert } from '../Action/alert.action';
@@ -46,7 +46,19 @@ function* googlesignup(action){
       yield put(alertloginAction(user))
       history.push("/")
    }catch(e){
-      yield put (setAlert({text:e.payload, color:"error"}))
+      yield put(setAlert({text:e.payload, color:"error"}))
+   }
+}
+
+function* forgetPassword(action) {
+   try{
+      const user = yield call(forgetPassowrdAPI, action.payload)
+      console.log(user);
+      yield put(setAlert({text:"Please Check Your Email Id", color:"success"}))
+      yield put(alertloginAction(user))
+      history.push("/")
+   }catch(e){
+      yield put(setAlert({text: e.payload, color:"error"}))
    }
 }
 
@@ -65,11 +77,16 @@ function* watchLogout() {
 function* watchGooglesignup() {
    yield takeEvery(ActionTypes.GOOGLE_SIGNUP, googlesignup)
 }
+
+function* watchForgetpassword() {
+   yield takeEvery(ActionTypes.FORGET_PASSWORD, forgetPassword)
+}
 export function* authSaga() {
    yield all([
       watchSignup(),
       watchLogin(),
       watchLogout(),
-      watchGooglesignup()
+      watchGooglesignup(),
+      watchForgetpassword()
    ])
 }

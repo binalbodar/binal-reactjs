@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup } from "firebase/auth";
+import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signInWithEmailAndPassword, signOut, GoogleAuthProvider, signInWithPopup, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../../firebase";
 
 export const signUpAPI = (data) => {
@@ -88,7 +88,7 @@ export const googlesignupAPI = () => {
                 const token = credential.accessToken;
                 // The signed-in user info.
                 const user = result.user;
-                resolve({payload: user})
+                resolve({ payload: user })
             })
             .catch((error) => {
                 // Handle Errors here.
@@ -98,7 +98,20 @@ export const googlesignupAPI = () => {
                 const email = error.customData.email;
                 // The AuthCredential type that was used.
                 const credential = GoogleAuthProvider.credentialFromError(error);
-                reject({payload: errorCode})
+                reject({ payload: errorCode })
             });
+    })
+}
+
+export const forgetPassowrdAPI = (data) => {
+    return new Promise((resolve, reject) => {
+        sendPasswordResetEmail(auth, data.email)
+            .then((user) => {
+                resolve({ payload: "Please Check Your Email Id." })
+            })
+            .catch((error) => {
+                console.log(error);
+                reject({ payload: "Email Id Is Wrong." })
+            })
     })
 }

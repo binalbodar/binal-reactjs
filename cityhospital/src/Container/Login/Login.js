@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, FormGroup, Input, Label } from 'reactstrap';
 import * as yup from 'yup';
-import { googlesignupAction, loginAction, signupAction } from '../../Redux/Action/auth.action';
+import { forgetPassowrdAction, googlesignupAction, loginAction, signupAction } from '../../Redux/Action/auth.action';
 
 function Login(props) {
     const [useType, setUseType] = useState("Login");
@@ -63,7 +63,7 @@ function Login(props) {
 
             //LOGIN
             if (useType === "Login") {
-                console.log("Successfully Login");
+                // console.log("Successfully Login");
 
                 let data = {
                     email: values.email,
@@ -82,7 +82,13 @@ function Login(props) {
                 dispatch(signupAction(data));
 
             } else if (useType === "forgetPassowrd") {
-                console.log("Successfully Forget Passowrd");
+                // console.log("Successfully Forget Passowrd");
+
+                let data = {
+                    email: values.email
+                }
+
+                dispatch(forgetPassowrdAction(data))
             }
             resetForm()
         },
